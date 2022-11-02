@@ -19,6 +19,7 @@ class Windows(tk.Tk):
         # 時間物件使用after方法，在某毫秒下，呼叫後面的變數
         self.label.after(1000,self.change_time)
 
+    # 創建一個刪除視窗的方法
     def delete_delay(self):
         self.label.after_cancel(self.after_id)
         self.destroy
@@ -28,6 +29,8 @@ class Windows(tk.Tk):
 def main():
     window = Windows()
     window.title('數位時鐘')
+    # Tkinter 支持一種稱為協議處理程序的機制。這裡，術語協議是指應用程序和窗口管理器之間的交互。最常用的協議稱為 WM_DELETE_WINDOW，用於定義當用戶使用窗口管理器顯式關閉窗口時會發生什麼。
+    # 可以使用protocol方法為此進行處理程序
     window.protocol('WM_DELETE)WINDOW',window.delete_delay)
     window.mainloop()
 
