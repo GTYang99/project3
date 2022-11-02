@@ -9,6 +9,8 @@ class Windows(tk.Tk):
         self.label.pack(padx=50,pady=30)
         # 呼叫改變時間的function
         self.change_time()
+        # 呼叫紀錄時間的function
+        self.window_time()
     def change_time(self):
         # 建立一個現在時間的物件，隨時間過去，物件不停被覆蓋
         now = datetime.now()
@@ -23,7 +25,15 @@ class Windows(tk.Tk):
     def delete_delay(self):
         self.label.after_cancel(self.after_id)
         self.destroy
-
+    
+    def window_time(self):
+        print(f"記錄第{self.times()}秒資料")
+        self.window_id = self.after(5000,self.window_time)
+    
+    def times(self):
+        now = datetime.now()
+        mm = now.strftime('%S')   
+        return mm
     
 
 def main():
