@@ -1,5 +1,6 @@
 import tkinter as tk 
 from datetime import datetime
+from Tools import data      #引用一個Tools外部套件(package)中的data物件
 
 class Windows(tk.Tk):
     def __init__(self):
@@ -46,3 +47,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    data()  #引用一個Tools外部套件(package)中的data物件
