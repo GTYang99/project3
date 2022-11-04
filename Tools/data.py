@@ -18,7 +18,11 @@ def getTemperature():
 
 def getLightValue():
     # lightValue.value()
-    print("光線:",lightValue.value*1000)
+    print(f"光線:{lightValue.value*1000:.1f}")
 
 def getDistance():    
-    print("距離:",sensor.distance)
+    # print("距離:",sensor.distance)
+    if sensor.distance < 1.0: 
+        print(f"距離:{sensor.distance*100:.2f}公分")
+    else:
+        print(f"距離:大於100公分")
