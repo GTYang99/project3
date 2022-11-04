@@ -1,9 +1,14 @@
 from gpiozero import MCP3008
+from gpiozero import DistanceSensor
 
 # MCP3008第6個針腳
 # 原廠文件MCP3008為5伏特
 temperatrue = MCP3008(6,max_voltage=5.0)
 lightValue = MCP3008(7,max_voltage=5.0)
+# 超音波接收器針腳位置
+#gpio23 -> echo 220,220分壓
+#gpio24 -> trig
+sensor = DistanceSensor(23, 24)
 
 def getTemperature():
     # temperatrue.value()
@@ -14,3 +19,6 @@ def getTemperature():
 def getLightValue():
     # lightValue.value()
     print("光線:",lightValue.value*1000)
+
+def getDistance():    
+    print("距離:",sensor.distance)

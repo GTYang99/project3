@@ -31,7 +31,8 @@ class Windows(tk.Tk):
         # print(f"記錄第{self.times()}秒資料")
         data.getTemperature()
         data.getLightValue()
-        self.window_id = self.after(1000 * 10,self.window_time)
+        data.getDistance()
+        self.window_id = self.after(1000 * 3,self.window_time)
     
     # def times(self):
     #     now = datetime.now()
