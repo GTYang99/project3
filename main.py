@@ -28,14 +28,15 @@ class Windows(tk.Tk):
         self.destroy
     
     def window_time(self):
-        print(f"記錄第{self.times()}秒資料")
+        # print(f"記錄第{self.times()}秒資料")
         data.getTemperature()
-        self.window_id = self.after(5000,self.window_time)
+        data.getLightValue()
+        self.window_id = self.after(1000 * 10,self.window_time)
     
-    def times(self):
-        now = datetime.now()
-        mm = now.strftime('%S')   
-        return mm
+    # def times(self):
+    #     now = datetime.now()
+    #     mm = now.strftime('%S')   
+    #     return mm
     
 
 def main():
@@ -48,4 +49,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    data()  #引用一個Tools外部套件(package)中的data物件
+    # data()  #引用一個Tools外部套件(package)中的data物件
