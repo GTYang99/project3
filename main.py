@@ -29,6 +29,7 @@ class Windows(tk.Tk):
     
     def window_time(self):
         print(f"記錄第{self.times()}秒資料")
+        data.getTemperature()
         self.window_id = self.after(5000,self.window_time)
     
     def times(self):
