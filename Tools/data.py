@@ -1,5 +1,6 @@
 from gpiozero import MCP3008
 from gpiozero import DistanceSensor
+lightSensor = MCP3008(7)
 
 # MCP3008第6個針腳
 # 原廠文件MCP3008為5伏特
@@ -26,3 +27,6 @@ def getDistance():
         print(f"距離:{sensor.distance*100:.2f}公分")
     else:
         print(f"距離:大於100公分")
+
+def getLightValue():  
+    return lightSensor.value * 1000  

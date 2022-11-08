@@ -2,6 +2,7 @@ import tkinter as tk
 from datetime import datetime
 from Tools import data      #引用一個Tools外部套件(package)中的data物件
 
+
 class Windows(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -44,6 +45,8 @@ class Windows(tk.Tk):
         else:
             print(f"距離:大於100公分")
             distance = 100
+        lightValue = data.getLightValue()
+        print(f"光線:{lightValue:.1f}")
     
     # def times(self):
     #     now = datetime.now()
