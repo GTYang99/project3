@@ -1,7 +1,7 @@
 import tkinter as tk 
 from datetime import datetime
 from Tools import data      #引用一個Tools外部套件(package)中的data物件
-from Tools import data,record
+from Tools import data,record   #外部一個Tools外部套件(package)中的record物件
 
 
 class Windows(tk.Tk):
