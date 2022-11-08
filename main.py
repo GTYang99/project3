@@ -16,7 +16,7 @@ class Windows(tk.Tk):
         # Treeview基本參數
         # columns	欄位的字串，可以設定欄位數。
         self.customView = CustomView(self,columns=('#1','#2','#3'),show='headings')
-        self.customView.pack()
+        self.customView.pack(padx=20,pady=(0,20))
         # 呼叫改變時間的function
         self.change_time()
         # 呼叫紀錄時間的function
@@ -63,7 +63,8 @@ class Windows(tk.Tk):
         #取得資料
         #建立實體(all_data)，呼叫record的module中的getData方法
         all_data = record.getData()
-        print(all_data)
+        # print(all_data)
+        self.customView.addData(all_data)
 
         self.window_id = self.after(1000 * 3,self.window_time)
     
@@ -82,9 +83,23 @@ class CustomView(ttk.Treeview):
         self.heading('#2',text="距離")
         self.heading('#3',text="光線")
 
+    def addData(self,data):
+        #清除第一筆資料
+        data.pop(0)
+        #反向
+        data.reverse()        
+        # 清除所有資料
+        for i in self.get_children():
+            self.delete(i)
+        #新增所有資料
+        for item in  data:
+            self.insert('',tk.END,values=item)    
+
+
+
 def main():
     window = Windows()
-    window.title('數位時鐘')
+    window.title('光線和距離監測器')
     # Tkinter 支持一種稱為協議處理程序的機制。這裡，術語協議是指應用程序和窗口管理器之間的交互。最常用的協議稱為 WM_DELETE_WINDOW，用於定義當用戶使用窗口管理器顯式關閉窗口時會發生什麼。
     # 可以使用protocol方法為此進行處理程序
     window.protocol('WM_DELETE)WINDOW',window.delete_delay)
