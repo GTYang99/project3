@@ -23,10 +23,11 @@ def getLightValue():
 
 def getDistance():    
     # print("距離:",sensor.distance)
-    if sensor.distance < 1.0: 
-        print(f"距離:{sensor.distance*100:.2f}公分")
-    else:
-        print(f"距離:大於100公分")
+    return sensor.distance * 100
+    # if sensor.distance < 1.0: 
+    #     print(f"距離:{sensor.distance*100:.2f}公分")
+    # else:
+    #     print(f"距離:大於100公分")
 
 def getLightValue():  
     return lightSensor.value * 1000  
