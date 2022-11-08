@@ -52,7 +52,12 @@ class Windows(tk.Tk):
         # record.recordData(distance=100,lightValue=200)
         record.recordData(distance=distance,lightValue=lightValue)
 
-        self.window_id = self.after(1000 * 30,self.window_time)
+        #取得資料
+        #建立實體(all_data)，呼叫record的module中的getData方法
+        all_data = record.getData()
+        print(all_data)
+
+        self.window_id = self.after(1000 * 3,self.window_time)
     
     # def times(self):
     #     now = datetime.now()
