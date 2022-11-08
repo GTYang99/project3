@@ -2,6 +2,7 @@ import tkinter as tk
 from datetime import datetime
 from Tools import data      #引用一個Tools外部套件(package)中的data物件
 from Tools import data,record   #外部一個Tools外部套件(package)中的record物件
+from tkinter import ttk
 
 
 class Windows(tk.Tk):
@@ -14,6 +15,13 @@ class Windows(tk.Tk):
         self.change_time()
         # 呼叫紀錄時間的function
         self.window_time()
+        
+        # 建立自己的實體，呼叫CustomView
+        self.customView = CustomView(self)
+        self.customView.pack()
+        
+        self.window_time()
+
     def change_time(self):
         # 建立一個現在時間的物件，隨時間過去，物件不停被覆蓋
         now = datetime.now()
@@ -63,7 +71,10 @@ class Windows(tk.Tk):
     #     now = datetime.now()
     #     mm = now.strftime('%S')   
     #     return mm
-    
+# 新增一個物件，作為顯示實時數據的視窗內容
+class CustomView(ttk.Treeview):
+    def __init__(self,master,**kwargs):
+        super().__init__(master,**kwargs)
 
 def main():
     window = Windows()
