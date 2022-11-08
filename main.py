@@ -16,7 +16,8 @@ class Windows(tk.Tk):
         # Treeview基本參數
         # columns	欄位的字串，可以設定欄位數。
         self.customView = CustomView(self,columns=('#1','#2','#3'),show='headings')
-        self.customView.pack(padx=20,pady=(0,20))
+        # 微調scroll bar的位置
+        self.customView.pack(side=tk.LEFT,padx=(20,0),pady=(0,20))
         # 呼叫改變時間的function
         self.change_time()
         # 呼叫紀錄時間的function
@@ -82,6 +83,11 @@ class CustomView(ttk.Treeview):
         self.heading('#1',text="日期")
         self.heading('#2',text="距離")
         self.heading('#3',text="光線")
+                
+        #==========建立scrollbar==========
+        scrollbar = ttk.Scrollbar(master,orient=tk.VERTICAL,command=self.yview)
+        self.configure(yscroll=scrollbar.set)
+        scrollbar.pack(side=tk.RIGHT,fill=tk.BOTH,padx=(0,20))
 
     def addData(self,data):
         #清除第一筆資料
@@ -94,6 +100,7 @@ class CustomView(ttk.Treeview):
         #新增所有資料
         for item in  data:
             self.insert('',tk.END,values=item)    
+
 
 
 
