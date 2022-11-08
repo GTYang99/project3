@@ -11,16 +11,14 @@ class Windows(tk.Tk):
         # 建立物件本身的實體
         self.label = tk.Label(self,text='',font=("Times New Roman",30))
         self.label.pack(padx=50,pady=30)
+        # 建立自己的實體，呼叫CustomView        self.customView = CustomView(self)
+        # 建立查看實時數據的視窗實體
+        self.customView = CustomView(self,columns=('#1','#2','#3'),show='headings')
+        self.customView.pack()
         # 呼叫改變時間的function
         self.change_time()
         # 呼叫紀錄時間的function
-        self.window_time()
-        
-        # 建立自己的實體，呼叫CustomView
-        self.customView = CustomView(self)
-        self.customView.pack()
-        
-        self.window_time()
+        self.window_time()   
 
     def change_time(self):
         # 建立一個現在時間的物件，隨時間過去，物件不停被覆蓋
@@ -71,10 +69,14 @@ class Windows(tk.Tk):
     #     now = datetime.now()
     #     mm = now.strftime('%S')   
     #     return mm
+
 # 新增一個物件，作為顯示實時數據的視窗內容
 class CustomView(ttk.Treeview):
     def __init__(self,master,**kwargs):
         super().__init__(master,**kwargs)
+        self.heading('#1',text="日期")
+        self.heading('#2',text="距離")
+        self.heading('#3',text="光線")
 
 def main():
     window = Windows()
