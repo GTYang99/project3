@@ -29,10 +29,21 @@ class Windows(tk.Tk):
     
     def window_time(self):
         # print(f"記錄第{self.times()}秒資料")
-        data.getTemperature()
-        data.getLightValue()
-        data.getDistance()
-        self.window_id = self.after(1000 * 3,self.window_time)
+
+        # data.getTemperature()
+        # data.getLightValue()
+        # data.getDistance()
+        # self.window_id = self.after(1000 * 3,self.window_time)
+
+        # 修改為:按照時間記錄距離，當大於100cm時，紀錄的距離為100
+        distance = data.getDistance()
+        print(distance)
+    
+        if distance < 100.0: 
+            print(f"距離:{distance:.2f}公分")
+        else:
+            print(f"距離:大於100公分")
+            distance = 100
     
     # def times(self):
     #     now = datetime.now()
