@@ -1,6 +1,7 @@
 import tkinter as tk 
 from datetime import datetime
 from Tools import data      #引用一個Tools外部套件(package)中的data物件
+from Tools import data,record
 
 
 class Windows(tk.Tk):
@@ -47,6 +48,10 @@ class Windows(tk.Tk):
             distance = 100
         lightValue = data.getLightValue()
         print(f"光線:{lightValue:.1f}")
+        #記錄資料
+        record.recordData(distance=100,lightValue=200)
+
+        self.window_id = self.after(1000 * 30,self.window_time)
     
     # def times(self):
     #     now = datetime.now()
