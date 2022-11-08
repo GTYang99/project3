@@ -12,7 +12,9 @@ class Windows(tk.Tk):
         self.label = tk.Label(self,text='',font=("Times New Roman",30))
         self.label.pack(padx=50,pady=30)
         # 建立自己的實體，呼叫CustomView        self.customView = CustomView(self)
-        # 建立查看實時數據的視窗實體
+        # =========建立查看實時數據的視窗實體=========
+        # Treeview基本參數
+        # columns	欄位的字串，可以設定欄位數。
         self.customView = CustomView(self,columns=('#1','#2','#3'),show='headings')
         self.customView.pack()
         # 呼叫改變時間的function
@@ -74,6 +76,8 @@ class Windows(tk.Tk):
 class CustomView(ttk.Treeview):
     def __init__(self,master,**kwargs):
         super().__init__(master,**kwargs)
+        # Treeview基本參數
+        # .heading ("欄位",text="內容")
         self.heading('#1',text="日期")
         self.heading('#2',text="距離")
         self.heading('#3',text="光線")
