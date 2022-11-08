@@ -41,7 +41,7 @@ class Windows(tk.Tk):
         distance = data.getDistance()
         print(distance)
     
-        if distance < 1.0: 
+        if distance < 100: 
             print(f"距離:{distance:.2f}公分")
         else:
             print(f"距離:大於100公分")
