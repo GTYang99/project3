@@ -27,7 +27,7 @@ def recordData(distance,lightValue):
         print(f"沒有{filename}檔案")
         # directory是相對路徑下的record資料夾，filename是檔案名
         # csv檔案要有newline
-        file = open(filename_abs,'a',encoding='utf-8',newline='')
+        file = open(filename_abs,'w',encoding='utf-8',newline='')
         # 表標題內容:先寫入，再確定表標題內容
         header_writer = csv.writer(file)
         header_writer.writerow(["日期","距離","光線"])
@@ -36,6 +36,12 @@ def recordData(distance,lightValue):
         csv_writer = csv.writer(file)
         # 每次有新數據進來，就寫入row一次
         csv_writer.writerow([current.strftime("%Y-%m-%d %H:%M:%S"),distance,lightValue]) 
+    
+    #將資料加入至firestore
+    print("要加入的資料")
+    print('日期',current.strftime("%Y-%m-%d %H:%M:%S"))
+    print('距離',distance)
+    print("亮度",lightValue)
 
 # 獲得數據讀取數據
 def getData():
