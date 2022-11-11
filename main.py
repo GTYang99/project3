@@ -2,6 +2,7 @@ import tkinter as tk
 from datetime import datetime
 from Tools import data,record   #外部一個Tools外部套件(package)中的data與record物件
 from tkinter import ttk
+import os
 
 
 class Windows(tk.Tk):
@@ -56,9 +57,13 @@ class Windows(tk.Tk):
             distance = 1
         lightValue = data.getLightValue()
         print(f"光線:{lightValue:.1f}")
+        
+        #取得檔案絕對位置
+        absolute_path = os.path.dirname(__file__)
+
         #記錄資料
         # record.recordData(distance=100,lightValue=200)
-        record.recordData(distance=distance,lightValue=lightValue)
+        record.recordData(distance=distance,lightValue=lightValue,absolute_path=absolute_path)
 
         #取得資料
         #建立實體(all_data)，呼叫record的module中的getData方法
