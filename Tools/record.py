@@ -1,6 +1,9 @@
 import os
 from datetime import datetime
 import csv
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
 # directory = os.path.abspath("./record")
 # Python 判斷資料夾是否存在 os.path.isdir
@@ -12,15 +15,17 @@ import csv
 # 建立一個空的全域變數(filename_abs)
 # 建立一個新的全域變數(full_path_csvFile)，獲得絕對路徑
 full_path_csvFile = None
+db = None
 
 def recordData(distance,lightValue,absolute_path):
     # 能修改全域變數的內容
     global full_path_csvFile
+    global db
     print("記錄")
     current = datetime.now()
     current_date = current.date()
     filename = current_date.strftime("%Y-%m-%d.csv")
-    print(filename)
+    # print(filename)
     # filename_abs = f'{directory}/{filename}'
     # currentFiles = os.listdir(directory)
     
@@ -59,6 +64,15 @@ def recordData(distance,lightValue,absolute_path):
     # print('日期',current.strftime("%Y-%m-%d %H:%M:%S"))
     # print('距離',distance)
     # print("亮度",lightValue)
+
+    # 程式讀取firebase的key
+    relative_path_key = 'private/raspberry1-45ee2-firebase-adminsdk-5h0yc-acdceb5727.json'
+    full_path_key = os.path.join(absolute_path,relative_path_key)
+    print("key:",full_path_key)
+    if db is None:
+        cred = credentials.Certificate(full_path_key)
+        app = firebase_admin.initialize_app(cred)
+        db = firestore.client()
 
 # 獲得數據讀取數據
 def getData():
